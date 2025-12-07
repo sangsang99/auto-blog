@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+input[type="text"]:not(#new-prompt){
+    width: 100%;
+    border: none;
+}
+
+textarea {
+    width: 100%;
+    border: none;
+}
+
+#content {
+    height: 25.25em;
+}
+
+#tag {
+    background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.link-light > a{
+    width: 3em;
+}

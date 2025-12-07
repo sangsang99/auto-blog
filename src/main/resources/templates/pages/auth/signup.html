@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{common/layout}"
+    layout:fragment="content">
+<head>
+    <title>회원가입</title>
+</head>
+<body class="page page-auth page-signup">
+
+<main class="auth-shell">
+    <section class="auth-panel">
+        <div class="auth-hero">
+            <p class="eyebrow">AutoBlog 가입</p>
+            <h1>AI 초안과 스타트부트스트랩 포스트를 바로 만나보세요.</h1>
+            <p>가입 후 홈 대시보드에서 Eventually 스타일의 타임라인과 토이GPT 글감을 확인할 수 있습니다.</p>
+            <div class="auth-steps">
+                <div class="step">
+                    <span class="badge">1</span>
+                    <p>이메일 인증</p>
+                </div>
+                <div class="step">
+                    <span class="badge">2</span>
+                    <p>프로필 설정</p>
+                </div>
+                <div class="step">
+                    <span class="badge">3</span>
+                    <p>첫 초안 생성</p>
+                </div>
+            </div>
+        </div>
+
+        <form class="auth-card" th:action="@{pages/auth/signup}" method="post">
+            <div class="card-head">
+                <p class="eyebrow">무료 시작</p>
+                <h2>계정 만들기</h2>
+            </div>
+
+            <label class="field">
+                <span>이메일</span>
+                <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+            </label>
+
+            <label class="field split">
+                <div>
+                    <span>이름</span>
+                    <input id="firstName" name="firstName" type="text" placeholder="홍길동" autocomplete="given-name" required>
+                </div>
+                <div>
+                    <span>닉네임</span>
+                    <input id="nickname" name="nickname" type="text" placeholder="autoblogger" autocomplete="nickname">
+                </div>
+            </label>
+
+            <label class="field">
+                <span>비밀번호</span>
+                <input id="password" name="password" type="password" placeholder="최소 8자" autocomplete="new-password" required>
+            </label>
+
+            <label class="field">
+                <span>비밀번호 확인</span>
+                <input id="confirmPassword" name="confirmPassword" type="password" placeholder="다시 입력" autocomplete="new-password" required>
+            </label>
+
+            <div class="field inline">
+                <label class="checkbox">
+                    <input type="checkbox" name="terms" required>
+                    <span>이용 약관 및 개인정보 처리방침에 동의합니다.</span>
+                </label>
+            </div>
+
+            <button class="button primary full" type="submit">계정 생성</button>
+
+            <p class="helper">이미 계정이 있으신가요? <a th:href="@{/signin}">로그인</a></p>
+        </form>
+    </section>
+</main>
+
+</body>
+</html>

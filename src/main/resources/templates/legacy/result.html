@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Result - toyGPT</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/src/ico/favicon.ico}" href="/src/ico/favicon.ico">
+    <link th:href="@{/css/styles_index.css}" href="/css/styles_index.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="fw-bolder mb-3">생성 결과</h1>
+        <p>title : <span th:text="${data.title} ?: '샘플 제목'}">샘플 제목</span></p>
+        <p>
+            <span th:with="tagList=${data.tags} ?: ${#lists.arrayList('tag1','tag2','tag3')}">
+                <span th:each="tag,iterStat : ${tagList}">
+                    tag<span th:text="${iterStat.index}">0</span> :
+                    <span th:text="${tag}">tag</span>&nbsp;
+                </span>
+            </span>
+        </p>
+        <p>summary : <span th:text="${data.summary} ?: '요약을 이곳에 노출합니다.'">요약을 이곳에 노출합니다.</span></p>
+        <p>content : <span th:text="${data.content} ?: '본문 텍스트를 렌더링합니다.'">본문 텍스트를 렌더링합니다.</span></p>
+    </div>
+</body>
+</html>
