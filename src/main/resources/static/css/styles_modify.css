@@ -1,23 +1,155 @@
 @charset "UTF-8";
 
-input[type="text"]:not(#new-prompt){
+/* Keep the header/footer flush to the edges on light pages */
+body.page:not(.page-hello) {
+    --header-offset: 6.25rem; /* default gap under fixed header */
+    --footer-offset: 4rem;   /* room to keep footer text visible */
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #212529;
+    font-family: var(--bs-body-font-family, "Segoe UI", system-ui, sans-serif);
+    scroll-padding-top: var(--header-offset);
+}
+
+body.page:not(.page-hello) > header,
+body.page:not(.page-hello) > footer {
+    flex-shrink: 0;
+}
+
+/* Clear stacking context so fixed header stays on top */
+body.page:not(.page-hello) > * {
+    position: static;
+    z-index: auto;
+}
+
+body.page:not(.page-hello) .layout-shell {
+    flex: 1 0 auto;
+    margin-top: var(--header-offset);
+    padding-top: 10rem;
+    padding-bottom: calc(var(--footer-offset) + env(safe-area-inset-bottom, 0px));
+}
+
+/* Restore form visibility on non-hero pages */
+body.page:not(.page-hello) .form-control,
+body.page:not(.page-hello) input[type="text"],
+body.page:not(.page-hello) input[type="email"],
+body.page:not(.page-hello) input[type="password"],
+body.page:not(.page-hello) textarea,
+body.page:not(.page-hello) select {
+    background-color: #ffffff;
+    color: #212529;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.65rem 0.75rem;
+    box-shadow: none;
+}
+
+body.page:not(.page-hello) .form-control:focus,
+body.page:not(.page-hello) input[type="text"]:focus,
+body.page:not(.page-hello) input[type="email"]:focus,
+body.page:not(.page-hello) input[type="password"]:focus,
+body.page:not(.page-hello) textarea:focus,
+body.page:not(.page-hello) select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    outline: 0;
+}
+
+body.page:not(.page-hello) input[type="text"],
+body.page:not(.page-hello) textarea {
     width: 100%;
-    border: none;
 }
 
-textarea {
+body.page:not(.page-hello) ::placeholder {
+    color: rgba(33, 37, 41, 0.6);
+    opacity: 1;
+}
+
+body.page:not(.page-hello) label {
+    color: #212529;
+}
+
+/* Hero page overrides: keep nav fixed without losing hero spacing */
+body.page.page-hello {
+    --hello-header-offset: 7rem;
+    --hello-footer-offset: 4.25rem;
+
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    scroll-padding-top: var(--hello-header-offset);
+}
+
+body.page.page-hello .layout-shell {
+    margin-top: var(--hello-header-offset); /* place below fixed navbar */
+    padding-top: 3rem;
+    padding-bottom: var(--hello-footer-offset);
+    min-height: calc(100vh - var(--hello-footer-offset) - var(--hello-header-offset)); /* header + footer heights */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 0 auto;
+}
+
+body.page header .navbar,
+body.page footer {
+    margin: 0;
+    border-radius: 0;
     width: 100%;
-    border: none;
+    z-index: 1050;
 }
 
-#content {
-    height: 25.25em;
+/* Neutralize legacy hero stacking */
+body.page.page-hello > * {
+    position: static;
+    z-index: auto;
 }
 
-#tag {
-    background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+/* Ensure main content does not slide under the header on scaling */
+body.page.page-hello main {
+    width: 100%;
 }
 
-.link-light > a{
-    width: 3em;
+/* Auth pages: give breathing room under fixed header */
+body.page:not(.page-hello) .page-auth {
+    margin-top: 0;
+    padding-top: clamp(3rem, 5vw, 4.75rem);
+    padding-bottom: clamp(3rem, 5vw, 4.75rem);
+}
+
+/* Footer padding tweak for compact content */
+body.page footer {
+    padding-top: 3rem !important;
+    padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+@media (max-width: 991.98px) {
+    body.page:not(.page-hello) {
+        --header-offset: 7rem; /* allow for two-line nav when zoomed or collapsed */
+        --footer-offset: 4.5rem;
+    }
+
+    body.page.page-hello {
+        --hello-header-offset: 8rem; /* allow for wrapped nav links */
+        --hello-footer-offset: 4.75rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body.page:not(.page-hello) {
+        --header-offset: 8rem;
+        --footer-offset: 5rem;
+    }
+
+    body.page.page-hello {
+        --hello-header-offset: 9rem;
+        --hello-footer-offset: 5rem;
+    }
 }

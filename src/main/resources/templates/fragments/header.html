@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<!-- <head th:fragment="head(title)">
-    <title th:text="${title} ?: 'AutoBlog'">AutoBlog</title>
-
-</head> -->
 <body>
 <header th:fragment="header">
-    <div class="nav-shell">
-        <div class="brand">
-            <a th:href="@{/home}" class="logo">AutoBlog</a>
-            <span class="tagline">AI powered publishing</span>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
+        <div class="container-fluid px-3 px-md-4">
+            <a class="navbar-brand" th:href="@{/home}">AutoBlog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/content}">Preview</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/signin}">Sign in</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign up</a></li>
+                </ul>
+            </div>
         </div>
-        <nav class="nav-links">
-            <a th:href="@{/home}">홈</a>
-            <a th:href="@{/content}">콘텐츠</a>
-            <a th:href="@{/signin}">로그인</a>
-            <a th:href="@{/signup}" class="pill accent">회원가입</a>
-        </nav>
-        <button class="nav-toggle" type="button" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-        </button>
-    </div>
+    </nav>
 </header>
 </body>
 </html>

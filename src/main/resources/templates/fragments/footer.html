@@ -1,37 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <body>
-<footer th:fragment="footer">
-    <div class="footer-shell">
-        <div class="footer-brand">
-            <div class="logo-mark">AB</div>
-            <div>
-                <p class="footer-title">AutoBlog</p>
-                <p class="footer-copy">생성형 AI로 아이디어를 콘텐츠로 전환하세요.</p>
+<footer th:fragment="footer" class="py-4 bg-dark text-white">
+    <div class="container-fluid px-3 px-md-4">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <h5 class="mb-2">AutoBlog</h5>
+                <p class="mb-0">생성형 AI로 아이디어를 콘텐츠로 전환하세요.</p>
             </div>
-        </div>
-        <div class="footer-links">
-            <div>
-                <p class="footer-label">제품</p>
-                <a th:href="@{/content}">콘텐츠</a>
-                <a href="#">템플릿</a>
-                <a href="#">자동화</a>
+            <div class="text-center mt-3 small">
+                © <span th:text="${#dates.format(#dates.createNow(),'yyyy')}">2024</span> AutoBlog. All rights reserved.
             </div>
-            <div>
-                <p class="footer-label">리소스</p>
-                <a href="#">가이드</a>
-                <a href="#">블로그</a>
-                <a href="#">지원</a>
-            </div>
-            <div>
-                <p class="footer-label">계정</p>
-                <a th:href="@{/signin}">로그인</a>
-                <a th:href="@{/signup}">회원가입</a>
-            </div>
-        </div>
-        <div class="footer-meta">
-            <p>© <span th:text="${#dates.format(#dates.createNow(),'yyyy')}">2024</span> AutoBlog. All rights reserved.</p>
         </div>
     </div>
 </footer>

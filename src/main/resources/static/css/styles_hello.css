@@ -135,7 +135,8 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1; }
+  z-index: 0;
+  pointer-events: none; }
   #bg div {
     -moz-transition: opacity 3s ease;
     -webkit-transition: opacity 3s ease;
@@ -357,7 +358,7 @@ section.special, article.special {
 header p {
   color: rgba(255, 255, 255, 0.5);
   position: relative;
-  margin: 0 0 1.5em 0; }
+  margin: 0 0 3.5em 0; }
 
 header h2 + p {
   font-size: 1.25em;
