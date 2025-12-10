@@ -3,6 +3,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{common/layout}"
       layout:fragment="content">
+<script>
+    const title = /*[[${title}]]*/ 'Welcome to Blog Post!';
+    const date = /*[[${date}]]*/ '2024-01-01 · AutoBlog';
+    const tags = /*[[${tags}]]*/ ['Web Design','HTML','Freebies'];
+    const imageUrl = /*[[${imageUrl}]]*/ 'https://dummyimage.com/900x400/ced4da/6c757d.jpg';
+    const summary = /*[[${summary}]]*/ '샘플 요약';
+    const content = /*[[${content}]]*/ '본문이 여기에 표시됩니다.';
+</script>
 <main class="page-legacy-post">
     <section class="container mt-5">
         <div class="row">
@@ -11,15 +19,15 @@
                     <header class="mb-4">
                         <h1 class="fw-bolder mb-1" th:text="${title} ?: 'Welcome to Blog Post!'">Welcome to Blog Post!</h1>
                         <div class="text-muted fst-italic mb-2" th:text="${date} ?: '2024-01-01 · AutoBlog'">2024-01-01 · AutoBlog</div>
-                        <div th:with="tagList=${tags} ?: ${{'Web Design','HTML','Freebies'}}">
+                        <!-- <div th:with="tagList=${tags} ?: ${{'Web Design','HTML','Freebies'}}">
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!" th:each="tag : ${tagList}" th:text="${tag}">Tag</a>
-                        </div>
+                        </div> -->
                     </header>
                     <figure class="mb-4">
                         <img class="img-fluid rounded" th:src="${imageUrl} ?: 'https://dummyimage.com/900x400/ced4da/6c757d.jpg'" alt="cover">
                     </figure>
                     <section class="mb-5">
-                        <h2 class="fw-bolder mb-4 mt-5" th:text="${summary} ?: '샘플 요약'}">샘플 요약</h2>
+                        <h2 class="fw-bolder mb-4 mt-5" th:text="${summary} ?: '샘플 요약'">샘플 요약</h2>
                         <p class="fs-5 mb-4" th:text="${content} ?: '본문이 여기에 표시됩니다.'">본문이 여기에 표시됩니다.</p>
                     </section>
                 </article>
@@ -67,5 +75,5 @@
     </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script th:src="@{/js/scripts.js}"></script>
+<script th:src="@{/js/scripts.js?v=3}"></script>
 </html>

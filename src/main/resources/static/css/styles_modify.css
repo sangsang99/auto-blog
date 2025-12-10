@@ -1,8 +1,14 @@
 @charset "UTF-8";
 
+/* Base variables updated at runtime to match the actual navbar height */
+body.page {
+    --header-height: 4.5rem; /* default navbar height fallback */
+    --header-gap: 2rem;      /* breathing room between header and content */
+}
+
 /* Keep the header/footer flush to the edges on light pages */
 body.page:not(.page-hello) {
-    --header-offset: 6.25rem; /* default gap under fixed header */
+    --header-offset: calc(var(--header-height) + var(--header-gap));
     --footer-offset: 4rem;   /* room to keep footer text visible */
 
     display: flex;
@@ -10,6 +16,7 @@ body.page:not(.page-hello) {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    padding-top: var(--header-height); /* place content immediately after fixed header */
     background-color: #f8f9fa;
     color: #212529;
     font-family: var(--bs-body-font-family, "Segoe UI", system-ui, sans-serif);
@@ -29,9 +36,11 @@ body.page:not(.page-hello) > * {
 
 body.page:not(.page-hello) .layout-shell {
     flex: 1 0 auto;
-    margin-top: var(--header-offset);
-    padding-top: 10rem;
+    margin-top: clamp(6rem, 25vh, 18rem); /* ~300px on 1080p laptop, responsive with bounds */
+    padding-top: 0;
     padding-bottom: calc(var(--footer-offset) + env(safe-area-inset-bottom, 0px));
+    min-height: calc(100vh - var(--footer-offset) - var(--header-height));
+    color: #212529; /* ensure readable text on light background */
 }
 
 /* Restore form visibility on non-hero pages */
@@ -74,9 +83,14 @@ body.page:not(.page-hello) label {
     color: #212529;
 }
 
+/* Keep links readable on non-hero pages */
+body.page:not(.page-hello) .layout-shell a {
+    color: #0d6efd;
+}
+
 /* Hero page overrides: keep nav fixed without losing hero spacing */
 body.page.page-hello {
-    --hello-header-offset: 7rem;
+    --hello-header-offset: calc(var(--header-height) + var(--header-gap) + 0.5rem);
     --hello-footer-offset: 4.25rem;
 
     padding: 0;
@@ -89,7 +103,7 @@ body.page.page-hello {
 
 body.page.page-hello .layout-shell {
     margin-top: var(--hello-header-offset); /* place below fixed navbar */
-    padding-top: 3rem;
+    padding-top: clamp(2rem, 3vw + 1rem, 3.5rem);
     padding-bottom: var(--hello-footer-offset);
     min-height: calc(100vh - var(--hello-footer-offset) - var(--hello-header-offset)); /* header + footer heights */
     display: flex;
@@ -119,9 +133,21 @@ body.page.page-hello main {
 
 /* Auth pages: give breathing room under fixed header */
 body.page:not(.page-hello) .page-auth {
-    margin-top: 0;
-    padding-top: clamp(3rem, 5vw, 4.75rem);
-    padding-bottom: clamp(3rem, 5vw, 4.75rem);
+    margin-top: clamp(3rem, 18vh, 12rem) !important;
+    padding-top: clamp(1.75rem, 6vh, 4rem) !important;  /* override .py-5 */
+    padding-bottom: clamp(2.75rem, 5vw, 4.5rem) !important;
+}
+
+/* Legacy post preview: keep clear of the fixed header */
+body.page:not(.page-hello) .page-legacy-post {
+    margin-top: clamp(18rem, 80vh, 52rem); /* bumped ~20vh for more breathing room */
+    padding-top: clamp(2rem, 3.5vw, 3.25rem);
+    padding-bottom: clamp(2.75rem, 5vw, 4.25rem);
+}
+
+/* Remove extra Bootstrap margin that pushes content too far down */
+body.page:not(.page-hello) .page-legacy-post .container.mt-5 {
+    margin-top: clamp(2rem, 3vw + 0.5rem, 3.25rem);
 }
 
 /* Footer padding tweak for compact content */
@@ -131,25 +157,29 @@ body.page footer {
 }
 
 @media (max-width: 991.98px) {
+    body.page {
+        --header-gap: 2.25rem; /* allow for two-line nav when zoomed or collapsed */
+    }
+
     body.page:not(.page-hello) {
-        --header-offset: 7rem; /* allow for two-line nav when zoomed or collapsed */
         --footer-offset: 4.5rem;
     }
 
     body.page.page-hello {
-        --hello-header-offset: 8rem; /* allow for wrapped nav links */
         --hello-footer-offset: 4.75rem;
     }
 }
 
 @media (max-width: 575.98px) {
+    body.page {
+        --header-gap: 2.75rem;
+    }
+
     body.page:not(.page-hello) {
-        --header-offset: 8rem;
         --footer-offset: 5rem;
     }
 
     body.page.page-hello {
-        --hello-header-offset: 9rem;
         --hello-footer-offset: 5rem;
     }
 }
