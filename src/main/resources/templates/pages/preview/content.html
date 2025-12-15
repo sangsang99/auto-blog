@@ -4,12 +4,6 @@
       layout:decorate="~{common/layout}"
       layout:fragment="content">
 <script>
-    const title = /*[[${title}]]*/ 'Welcome to Blog Post!';
-    const date = /*[[${date}]]*/ '2024-01-01 · AutoBlog';
-    const tags = /*[[${tags}]]*/ ['Web Design','HTML','Freebies'];
-    const imageUrl = /*[[${imageUrl}]]*/ 'https://dummyimage.com/900x400/ced4da/6c757d.jpg';
-    const summary = /*[[${summary}]]*/ '샘플 요약';
-    const content = /*[[${content}]]*/ '본문이 여기에 표시됩니다.';
 </script>
 <main class="page-legacy-post">
     <section class="container mt-5">
@@ -19,9 +13,9 @@
                     <header class="mb-4">
                         <h1 class="fw-bolder mb-1" th:text="${title} ?: 'Welcome to Blog Post!'">Welcome to Blog Post!</h1>
                         <div class="text-muted fst-italic mb-2" th:text="${date} ?: '2024-01-01 · AutoBlog'">2024-01-01 · AutoBlog</div>
-                        <!-- <div th:with="tagList=${tags} ?: ${{'Web Design','HTML','Freebies'}}">
+                        <div th:with="tagList=${tags ?: {'Web Design','HTML','Freebies'}}">
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!" th:each="tag : ${tagList}" th:text="${tag}">Tag</a>
-                        </div> -->
+                        </div>
                     </header>
                     <figure class="mb-4">
                         <img class="img-fluid rounded" th:src="${imageUrl} ?: 'https://dummyimage.com/900x400/ced4da/6c757d.jpg'" alt="cover">

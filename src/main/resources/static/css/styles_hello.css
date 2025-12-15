@@ -275,7 +275,7 @@ em, i {
 p {
   margin: 0 0 2em 0; }
 
-h1:not(.home-header), h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   color: darkslategray;
   font-weight: 700;
   line-height: 1em;
@@ -283,6 +283,15 @@ h1:not(.home-header), h2, h3, h4, h5, h6 {
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     color: inherit;
     text-decoration: none; }
+
+h1.white-header,
+h2.white-header,
+h3.white-header,
+h4.white-header,
+h5.white-header,
+h6.white-header {
+  color: white;
+}
 
 h1 {
   font-size: 2.5em;
@@ -670,9 +679,9 @@ input[type="radio"] {
       font-weight: 900; }
     input[type="checkbox"] + label:before,
     input[type="radio"] + label:before {
-      background: rgba(255, 255, 255, 0.125);
+      background: rgba(0, 0, 0, 0.05);
+      border: 2px solid rgba(0, 0, 0, 0.3); 
       border-radius: 6px;
-      border: solid 2px rgba(255, 255, 255, 0.35);
       content: '';
       display: inline-block;
       font-size: 0.8em;
