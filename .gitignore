@@ -38,3 +38,6 @@ out/
 
 ### static ###
 *.csv
+
+### sensitive files ###
+*.env

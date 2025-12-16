@@ -3,8 +3,12 @@ package com.sangsang.autoblog.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.sangsang.autoblog.service.GeminiPlug;
+
 @Controller
 public class HomeController {
+
+    final GeminiPlug geminiPlug = new GeminiPlug();
 
     @GetMapping("/")
     public String getDefault() {
@@ -15,6 +19,7 @@ public class HomeController {
     @GetMapping("/home")
     public String getHome() {
         System.out.println("accessed /home");
+        geminiPlug.testPlugin();
         return "home";
     }
 
