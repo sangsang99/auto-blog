@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.genai.Client;
 import com.google.genai.types.GenerateContentResponse;
+import com.sangsang.autoblog.data.Content;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -36,6 +37,36 @@ public class GeminiClient {
         }
 
         return result;
+    }
+
+    public Content getPromptContents(String prompt){
+
+        Content content = new Content();
+        String apiKey = dotenv.get("GEMINI_API_KEY");
+        Client client = Client.builder().apiKey(apiKey).build();
+
+        try (client){
+            GenerateContentResponse response =
+                client.models.generateContent(
+                    "gemini-2.5-flash",
+                    "make a title in a few words for blog post about " + prompt,
+                    null);
+
+            content.setTitle(response.text()); 
+
+            response =
+                client.models.generateContent(
+                    "gemini-2.5-flash",
+                    "make a body in a few sentences for blog post about " + prompt,
+                    null);
+         
+            content.setBody(response.text()); 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return content;
     }
  
 }
