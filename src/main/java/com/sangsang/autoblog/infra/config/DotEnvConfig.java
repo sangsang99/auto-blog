@@ -1,4 +1,4 @@
-package com.sangsang.autoblog.config;
+package com.sangsang.autoblog.infra.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.context.annotation.Bean;

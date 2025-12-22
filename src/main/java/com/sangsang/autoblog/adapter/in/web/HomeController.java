@@ -1,14 +1,11 @@
-package com.sangsang.autoblog.controller;
+package com.sangsang.autoblog.adapter.in.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.sangsang.autoblog.service.GeminiClient;
-
 @Controller
 public class HomeController {
 
-    final GeminiClient geminiClient = new GeminiClient();
 
     @GetMapping("/")
     public String getDefault() {
@@ -19,9 +16,6 @@ public class HomeController {
     @GetMapping("/home")
     public String getHome() {
         System.out.println("accessed /home");
-
-        String result = geminiClient.getTestText();
-        System.out.println("Gemini response: " + result);
 
         return "home";
     }

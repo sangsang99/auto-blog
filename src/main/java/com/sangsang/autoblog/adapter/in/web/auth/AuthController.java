@@ -1,4 +1,4 @@
-package com.sangsang.autoblog.controller.auth;
+package com.sangsang.autoblog.adapter.in.web.auth;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

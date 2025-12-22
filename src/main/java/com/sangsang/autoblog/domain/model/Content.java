@@ -1,4 +1,4 @@
-package com.sangsang.autoblog.data;
+package com.sangsang.autoblog.domain.model;
 
 import java.util.Date;
 

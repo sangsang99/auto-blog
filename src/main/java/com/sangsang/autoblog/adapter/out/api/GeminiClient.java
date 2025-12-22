@@ -1,15 +1,15 @@
-package com.sangsang.autoblog.service;
+package com.sangsang.autoblog.adapter.out.api;
 
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import com.google.genai.Client;
 import com.google.genai.types.GenerateContentResponse;
-import com.sangsang.autoblog.data.Content;
+import com.sangsang.autoblog.domain.model.Content;
+import com.sangsang.autoblog.domain.port.out.PromptPort;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
-@Service
-public class GeminiClient {
+@Component
+public class GeminiClient implements PromptPort {
 
     private final Dotenv dotenv;
 
@@ -39,7 +39,7 @@ public class GeminiClient {
         return result;
     }
 
-    public Content getPromptContents(String prompt){
+    public Content getPromptContent(String prompt){
 
         Content content = new Content();
         String apiKey = dotenv.get("GEMINI_API_KEY");
