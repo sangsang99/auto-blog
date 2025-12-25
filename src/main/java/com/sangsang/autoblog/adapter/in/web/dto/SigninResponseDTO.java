@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignInResponseDTO extends CommomResponseDTO{
+public class SigninResponseDTO extends CommonResponseDTO{
     private String token;
     private String tokenType = "Bearer";
 }

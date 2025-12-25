@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sangsang.autoblog.adapter.in.web.dto.SignInReqeustDTO;
-import com.sangsang.autoblog.adapter.in.web.dto.SignInResponseDTO;
+import com.sangsang.autoblog.adapter.in.web.dto.CommonResponseDTO;
+import com.sangsang.autoblog.adapter.in.web.dto.SigninReqeustDTO;
+import com.sangsang.autoblog.adapter.in.web.dto.SigninResponseDTO;
+import com.sangsang.autoblog.adapter.in.web.dto.SignupReqeustDTO;
 import com.sangsang.autoblog.domain.port.in.AuthUseCase;
+
 
 
 @Controller
@@ -20,14 +23,14 @@ public class AuthController {
     }
 
     @GetMapping("/signin")
-    public String getLogin(@RequestParam(value = "param", required = false) String param) {
+    public String getSignin(@RequestParam(value = "param", required = false) String param) {
         System.out.println("accessed /signin with param: " + param);
         return "pages/auth/signin";
     }
 
     @PostMapping("/signin")
-    public String postLogin(SignInReqeustDTO signInReqeustDTO) {
-        SignInResponseDTO response = authUseCase.signIn(signInReqeustDTO);
+    public String postSignin(SigninReqeustDTO signinReqeustDTO) {
+        SigninResponseDTO response = authUseCase.signin(signinReqeustDTO);
         System.out.println("received token: " + response.getToken());
         return "redirect:home";
     }
@@ -37,6 +40,12 @@ public class AuthController {
         System.out.println("accessed /signup with param: " + param);
         return "pages/auth/signup";
     }
-    
+
+    @PostMapping("/signup")
+    public String postSignup(SignupReqeustDTO signupReqeustDTO) {
+        CommonResponseDTO response = authUseCase.signup(signupReqeustDTO);
+        System.out.println("Sign-up result code: " + response.getResultCode());
+        return "redirect:signin";
+    }
     
 }
