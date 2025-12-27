@@ -11,5 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CommonResponseDTO {
     Long resultCode;
-    String resultMessage;
+    String resultMessage;         
 }

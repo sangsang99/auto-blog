@@ -23,7 +23,7 @@ public class AuthController {
     }
 
     @GetMapping("/signin")
-    public String getSignin(@RequestParam(value = "param", required = false) String param) {
+    public String getSigninView(@RequestParam(value = "param", required = false) String param) {
         System.out.println("accessed /signin with param: " + param);
         return "pages/auth/signin";
     }
@@ -36,7 +36,7 @@ public class AuthController {
     }
 
     @GetMapping("/signup")
-    public String getSignup(@RequestParam(value = "param", required = false) String param) {
+    public String getSignupView(@RequestParam(value = "param", required = false) String param) {
         System.out.println("accessed /signup with param: " + param);
         return "pages/auth/signup";
     }

@@ -10,8 +10,8 @@
         <p>openAI API를 활용해 한 줄 프롬프트로 포스트를 생성하고<br>Tistory에 자동 포스팅까지 이어집니다.</p>
     </header>
 
-    <form id="signup-form" class="mt-4" method="post" th:action="@{/prompt}">
-        <input type="text" name="prompt" id="prompt" placeholder="input your prompt">
+    <form id="signup-form" class="mt-4" method="post" th:action="@{/content/prompt}">
+        <input type="text" name="promptText" id="prompt" placeholder="input your prompt">
         <input type="submit" value="prompt">
     </form>
 

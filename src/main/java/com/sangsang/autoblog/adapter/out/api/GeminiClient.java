@@ -1,9 +1,14 @@
 package com.sangsang.autoblog.adapter.out.api;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.springframework.stereotype.Component;
 import com.google.genai.Client;
+import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentResponse;
-import com.sangsang.autoblog.domain.model.Content;
+import com.google.genai.types.Part;
+import com.sangsang.autoblog.domain.model.Prompt;
 import com.sangsang.autoblog.domain.port.out.PromptPort;
 
 import io.github.cdimascio.dotenv.Dotenv;
@@ -12,22 +17,37 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class GeminiClient implements PromptPort {
 
     private final Dotenv dotenv;
+    private final String API_KEY;
 
     public GeminiClient() {
         this.dotenv = Dotenv.load();
+        this.API_KEY = dotenv.get("GEMINI_API_KEY");
     }
 
-    public String getTestText(){
+    // Handler method
+    public String genTextByPrompt(Prompt prompt) throws Exception {
 
         String result = "";
-        String apiKey = dotenv.get("GEMINI_API_KEY");
-        Client client = Client.builder().apiKey(apiKey).build();
+        if (prompt.promptFiles == null || prompt.promptFiles.length == 0) {
+            result = getTextByOnlyTextPrompt(prompt.promptText);
+            return result;
+        } else {
+            result = getTextByPromptWithImage(prompt);
+        }
+
+        return result;
+    }
+
+
+    private String getTextByOnlyTextPrompt(String promptText) {
+        String result = "";
+        Client client = Client.builder().apiKey(API_KEY).build();
 
         try (client){
             GenerateContentResponse response =
                 client.models.generateContent(
                     "gemini-2.5-flash",
-                    "Explain how AI works in a few words",
+                    promptText,
                     null);
 
             result = response.text(); 
@@ -39,34 +59,35 @@ public class GeminiClient implements PromptPort {
         return result;
     }
 
-    public Content getPromptContent(String prompt){
+    private String getTextByPromptWithImage(Prompt prompt) throws Exception {
 
-        Content content = new Content();
-        String apiKey = dotenv.get("GEMINI_API_KEY");
-        Client client = Client.builder().apiKey(apiKey).build();
+        String result = "";
+        Client client = Client.builder().apiKey(API_KEY).build();
+
+        String path = prompt.promptFiles[0].getPath();
+        byte[] imageData = Files.readAllBytes(Paths.get(path));
+
+        Content content =
+        Content.fromParts(
+                Part.fromText(prompt.promptText),
+                Part.fromBytes(imageData, "image/jpeg")
+            );
 
         try (client){
             GenerateContentResponse response =
                 client.models.generateContent(
                     "gemini-2.5-flash",
-                    "make a title in a few words for blog post about " + prompt,
+                    content,
                     null);
 
-            content.setTitle(response.text()); 
-
-            response =
-                client.models.generateContent(
-                    "gemini-2.5-flash",
-                    "make a body in a few sentences for blog post about " + prompt,
-                    null);
+            result = response.text(); 
          
-            content.setBody(response.text()); 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return content;
+        return result;
     }
+
  
 }
