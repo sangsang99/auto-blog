@@ -9,10 +9,10 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h2 class="h4 mb-3 text-center">Sign in</h2>
-                    <form th:action="@{/signin}" method="post">
+                    <form th:action="@{/auth/signin}" method="post">
                         <div class="mb-3">
                             <label class="form-label" for="email">이메일</label>
-                            <input class="form-control" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+                            <input class="form-control" id="email" name="userId" type="email" placeholder="you@example.com" autocomplete="email" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="password">비밀번호</label>
@@ -27,7 +27,7 @@
                         </div>
                         <button class="btn btn-primary w-100" type="submit">로그인</button>
                     </form>
-                    <p class="mt-4 mb-0 text-center small">처음이신가요? <a th:href="@{/signup}">회원가입</a></p>
+                    <p class="mt-4 mb-0 text-center small">처음이신가요? <a th:href="@{/auth/signup}">회원가입</a></p>
                 </div>
             </div>
         </div>

@@ -1,28 +1,24 @@
-package com.sangsang.autoblog.adapter.in.web;
+package com.sangsang.autoblog.adapter.in.web.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
 
-
     @GetMapping("/")
-    public String getDefault() {
-        System.out.println("accessed /");
+    public String getWelcome() {
         return "home";
     }
-    
+
     @GetMapping("/home")
     public String getHome() {
-        System.out.println("accessed /home");
-
         return "home";
     }
 
     @GetMapping("/healthCheck")
-    public String healthCheck() {
-        System.out.println("Health check");
-        return "home";
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("OK");
     }
 }

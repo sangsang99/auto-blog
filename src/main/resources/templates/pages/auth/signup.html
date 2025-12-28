@@ -9,7 +9,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h2 class="h4 mb-3 text-center">무료 가입</h2>
-                    <form th:action="@{/signup}" method="post">
+                    <form th:action="@{/auth/signup}" method="post">
                         <div class="mb-3">
                             <label class="form-label" for="email">이메일</label>
                             <input class="form-control" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
@@ -38,7 +38,7 @@
                         </div>
                         <button class="btn btn-primary w-100" type="submit">계정 생성</button>
                     </form>
-                    <p class="mt-4 mb-0 text-center small">이미 계정이 있으신가요? <a th:href="@{/signin}">로그인</a></p>
+                    <p class="mt-4 mb-0 text-center small">이미 계정이 있으신가요? <a th:href="@{/auth/signin}">로그인</a></p>
                 </div>
             </div>
         </div>

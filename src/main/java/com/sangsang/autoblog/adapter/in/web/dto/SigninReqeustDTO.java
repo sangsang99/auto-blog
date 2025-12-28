@@ -1,16 +1,18 @@
 package com.sangsang.autoblog.adapter.in.web.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.sangsang.autoblog.domain.model.Signin;
+
 import lombok.Setter;
 
-@Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class SigninReqeustDTO {
-    private String email;
+
+    private String userId;
     private String password;
     private boolean rememberMe;
+
+    public Signin toSigninDomain() {
+        return new Signin(userId, password, rememberMe);
+    }
+
 }

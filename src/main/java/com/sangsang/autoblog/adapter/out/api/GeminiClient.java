@@ -64,7 +64,7 @@ public class GeminiClient implements PromptPort {
         String result = "";
         Client client = Client.builder().apiKey(API_KEY).build();
 
-        String path = prompt.promptFiles[0].getPath();
+        String path = prompt.promptFiles[0].getOriginalFilename();
         byte[] imageData = Files.readAllBytes(Paths.get(path));
 
         Content content =

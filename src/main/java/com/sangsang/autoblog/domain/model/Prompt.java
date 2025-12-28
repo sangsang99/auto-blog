@@ -1,13 +1,13 @@
 package com.sangsang.autoblog.domain.model;
 
-import java.io.File;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Prompt {
 
     public String promptText;
-    public final File[] promptFiles;
+    public final MultipartFile[] promptFiles;
 
-    public Prompt(String promptText, File[] promptFiles) {
+    public Prompt(String promptText, MultipartFile[] promptFiles) {
         this.promptText = promptText;
         this.promptFiles = promptFiles;
     }

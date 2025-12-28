@@ -1,18 +1,19 @@
 package com.sangsang.autoblog.adapter.in.web.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.sangsang.autoblog.domain.model.User;
+
 import lombok.Setter;
 
-@Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class SignupReqeustDTO {
+
     private String email;
     private String password;
     private String extraInfo;
     private String nickname;
     private boolean agreeToTerms;
+
+    public User toUserDomain() {
+        return new User(email, password, extraInfo, nickname, agreeToTerms);
+    }
 }
