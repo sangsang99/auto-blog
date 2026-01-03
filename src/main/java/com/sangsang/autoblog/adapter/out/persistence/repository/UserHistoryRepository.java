@@ -1,0 +1,9 @@
+package com.sangsang.autoblog.adapter.out.persistence.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sangsang.autoblog.adapter.out.persistence.entity.UserHistoryEntity;
+
+public interface UserHistoryRepository extends JpaRepository<UserHistoryEntity, Long> {
+    
+} 

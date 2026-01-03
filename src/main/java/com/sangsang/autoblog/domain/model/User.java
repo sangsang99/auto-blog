@@ -4,14 +4,14 @@ public class User {
     public final String email;
     public final String password;
     public final String extraInfo;
-    public final String nickname;
+    public final String userName;
     public final boolean agreeToTerms;
 
-    public User(String email, String password, String extraInfo, String nickname, boolean agreeToTerms) {
+    public User(String email, String password, String extraInfo, String userName, boolean agreeToTerms) {
         this.email = email;
         this.password = password;
         this.extraInfo = extraInfo;
-        this.nickname = nickname;
+        this.userName = userName;
         this.agreeToTerms = agreeToTerms;
     }
 }

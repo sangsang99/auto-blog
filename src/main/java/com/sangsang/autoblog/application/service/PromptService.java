@@ -6,13 +6,13 @@ import com.sangsang.autoblog.domain.model.PostContent;
 import com.sangsang.autoblog.domain.model.Prompt;
 
 import com.sangsang.autoblog.domain.port.in.PromptUseCase;
-import com.sangsang.autoblog.domain.port.out.PromptPort;
+import com.sangsang.autoblog.domain.port.out.PromptApiPort;
 
 @Service
 public class PromptService implements PromptUseCase{
 
-    private final PromptPort promptPort;
-    public PromptService(PromptPort promptPort) {
+    private final PromptApiPort promptPort;
+    public PromptService(PromptApiPort promptPort) {
         this.promptPort = promptPort;
     }
 

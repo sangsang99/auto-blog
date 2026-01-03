@@ -11,9 +11,6 @@ public class Signin {
         if(userId == null || userId.isEmpty()) {
             throw new IllegalArgumentException("User ID cannot be null or empty");
         }
-        if(password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be null or empty");
-        }
         this.userId = userId;
         this.email = userId;
 

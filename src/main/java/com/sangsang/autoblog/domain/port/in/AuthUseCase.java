@@ -4,6 +4,6 @@ import com.sangsang.autoblog.domain.model.Signin;
 import com.sangsang.autoblog.domain.model.User;
 
 public interface AuthUseCase {
-    Signin signin(Signin SigninInfo);
+    User signin(Signin SigninInfo);
     User signup(User newUser);
 }

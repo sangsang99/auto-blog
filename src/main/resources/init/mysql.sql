@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS USER_ORIGIN;
 CREATE TABLE USER_ORIGIN
 (
     id           BIGINT AUTO_INCREMENT,
-    user_name    VARCHAR(255) NOT NULL,
+    user_name    VARCHAR(255) NOT NULL UNIQUE,
     password     VARCHAR(255),
     email        VARCHAR(255) UNIQUE,
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -19,7 +19,6 @@ CREATE TABLE USER_OAUTH
     user_id      BIGINT FOREIGN KEY REFERENCES USER_ORIGIN(id),
     provider     VARCHAR(100) NOT NULL,
     provider_id  VARCHAR(255) NOT NULL,
-    user_name    VARCHAR(255) NOT NULL,
     created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at   TIMESTAMP NULL,
     UNIQUE (provider, provider_id),

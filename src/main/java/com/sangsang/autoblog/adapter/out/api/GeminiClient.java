@@ -9,12 +9,12 @@ import com.google.genai.types.Content;
 import com.google.genai.types.GenerateContentResponse;
 import com.google.genai.types.Part;
 import com.sangsang.autoblog.domain.model.Prompt;
-import com.sangsang.autoblog.domain.port.out.PromptPort;
+import com.sangsang.autoblog.domain.port.out.PromptApiPort;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
 @Component
-public class GeminiClient implements PromptPort {
+public class GeminiClient implements PromptApiPort {
 
     private final Dotenv dotenv;
     private final String API_KEY;
